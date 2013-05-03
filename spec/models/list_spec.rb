@@ -61,4 +61,19 @@ describe List do
 
     list.completed_tasks.should == [grocery_store_task, save_world_task]
   end
+
+  it 'knows the priority of its tasks' do
+    list = List.new(name: "Test To-Do List")
+    grocery_store_task = Task.create(description: "Buy groceries", priority: 4)
+    laundry_task = Task.create(description: "Do laundry", priority: 2)
+    ironing_task = Task.create(description: "Iron cape", priority: 3)
+    save_world_task = Task.create(description: "Save the world", priority: 1)
+
+    list.add_task(grocery_store_task)
+    list.add_task(laundry_task)
+    list.add_task(ironing_task)
+    list.add_task(save_world_task)
+
+    list.tasks.prioritize.should == [save_world_task, laundry_task, ironing_task, grocery_store_task]
+  end
 end
