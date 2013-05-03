@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130502194539) do
+ActiveRecord::Schema.define(:version => 20130503144533) do
 
   create_table "lists", :force => true do |t|
     t.string   "name"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(:version => 20130502194539) do
     t.integer  "list_id"
     t.boolean  "completed",   :default => false
     t.datetime "deadline"
+    t.integer  "priority"
   end
 
   create_table "users", :force => true do |t|
