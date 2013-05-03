@@ -40,3 +40,8 @@ Milestone 3 Additions and Changes
 1. Cleans and [DRYs up](http://en.wikipedia.org/wiki/Don't_repeat_yourself) the existing tests.
 2. Adds optional deadline field to tasks and displays to user how many days are left to complete the task
 3. Adds ability to completely delete lists and tasks
+
+Milestone 3 Additions
+---------------------
+
+1. Adds ability to rank tasks in priority for a given list
