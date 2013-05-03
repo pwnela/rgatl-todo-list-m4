@@ -1,0 +1,5 @@
+<%= link_to 'Create New List', new_list_path %>
+
+<% @lists.each do |list| %>
+  <h2><%= link_to list.name, list_path(list) %> <%= "(#{list.completed_tasks.count}/#{list.tasks.count} tasks completed)" %></h2>
+<% end %>

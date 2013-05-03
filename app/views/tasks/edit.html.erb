@@ -1,0 +1,19 @@
+<%= form_for @task do |f| %>
+  <p>
+    <%= f.label "Task" %>:
+    <%= f.hidden_field :list_id, value: @list.id %>
+    <%= f.text_field :description %><br />
+  </p>
+  <p>
+    <%= f.label "Mark Complete" %>:
+    <%= f.check_box :completed, alt: "Mark Complete" %><br />
+  </p>
+
+  <p>
+    <%= f.label "Deadline" %>:
+    <%= f.datetime_select :deadline, discard_hour: true, discard_minute: true %><br />
+  </p>
+
+  <%= f.submit %>
+  <%= link_to 'Delete Task', task_path(@task), method: :delete %>
+<% end %>

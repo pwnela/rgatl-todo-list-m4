@@ -1,0 +1,6 @@
+<%= form_for @list do |f| %>
+  <%= f.label "To-Do List Name" %>:
+  <%= f.text_field :name, placeholder: "Type name here" %><br />
+
+  <%= f.submit %>
+<% end %>

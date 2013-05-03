@@ -1,0 +1,14 @@
+<%= form_for @task do |f| %>
+  <p>
+    <%= f.label "Task" %>:
+    <%= f.hidden_field :list_id, value: @list.id %>
+    <%= f.text_field :description, placeholder: "Type task description here" %><br />
+  </p>
+
+  <p>
+    <%= f.label "Deadline" %>:
+    <%= f.datetime_select :deadline, discard_hour: true, discard_minute: true %><br />
+  </p>
+  
+  <%= f.submit %>
+<% end %>
