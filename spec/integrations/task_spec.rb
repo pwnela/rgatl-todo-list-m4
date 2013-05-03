@@ -17,15 +17,17 @@ describe 'list' do
       click_link list.name
       click_link "Add Task"
       fill_in "task_description", with: "Get excited and make things"
+      select "1", from: "task_priority"
       click_button "Create Task"
 
       page.should have_content "List Name"
       page.should have_content "Get excited and make things"
+      page.should have_css("li:nth-child(1)", text: "Get excited and make things")
     end
 
     context 'of an existing task' do
-      let!(:grocery_store_task) { list.tasks.create(description: "Buy groceries") }
-      let!(:laundry_task) { list.tasks.create(description: "Do laundry") }
+      let!(:grocery_store_task) { list.tasks.create(description: "Buy groceries", priority: 1) }
+      let!(:laundry_task) { list.tasks.create(description: "Do laundry", priority: 2) }
 
       before do
         visit root_path
@@ -43,6 +45,13 @@ describe 'list' do
       it 'can be deleted' do
         click_link 'Delete Task'
         page.should_not have_content grocery_store_task.description
+      end
+
+      it 'can change its priority level' do
+        select "2", from: "task_priority"
+        click_button "Update Task"
+        
+        page.should have_css("li:nth-child(2)", text: grocery_store_task.description)
       end
     end
   end

@@ -1,5 +1,10 @@
 <%= form_for @task do |f| %>
   <p>
+    <%= f.label "Priority" %>:
+    <%= f.select :priority, options_for_select(1..@list.tasks.count + 1), include_blank: true %>
+  </p>
+
+  <p>
     <%= f.label "Task" %>:
     <%= f.hidden_field :list_id, value: @list.id %>
     <%= f.text_field :description, placeholder: "Type task description here" %><br />

@@ -2,13 +2,15 @@
 <%= link_to "Add Task", new_task_path(list_id: @list.id) %>
 <%= link_to "Delete List", list_path(@list), method: :delete %></h2>
 
-<%- @list.tasks.each do |task| %>
-  <%- if task.completed? %>
-    <li><del><%= link_to task.description, edit_task_path(task) %></del>
-  <%- else %>
-    <li><%= link_to task.description, edit_task_path(task) %>
-        <%- if task.deadline.present? %>
-          <%= "#{task.days_left_to_complete} more days until deadline" %>
-        <% end %>
-  <%- end %>
-<% end %>
+<ol>
+  <%- @tasks.each do |task| %>
+    <%- if task.completed? %>
+      <li><del><%= link_to task.description, edit_task_path(task) %></del>
+    <%- else %>
+      <li><%= link_to task.description, edit_task_path(task) %>
+          <%- if task.deadline.present? %>
+            <%= "#{task.days_left_to_complete} more days until deadline" %>
+          <% end %>
+    <%- end %>
+  <% end %>
+</ol>
