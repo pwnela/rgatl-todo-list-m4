@@ -11,6 +11,12 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(params[:task])
+    if @task.list.tasks.count > 0
+      @task.priority = @task.list.last_priority_level + 1
+    else
+      @task.priority = 1
+    end
+
     if @task.save
       redirect_to list_path(@task.list)
     else

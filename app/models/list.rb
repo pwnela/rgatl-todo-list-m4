@@ -25,4 +25,10 @@ class List < ActiveRecord::Base
   def completed_tasks
     tasks.where(completed: true)
   end
+
+  def last_priority_level
+    # This is using a shortcut called a ternary operator
+    # http://en.wikipedia.org/wiki/%3F:#Ruby
+    return tasks.prioritize.last.priority.present? ? tasks.prioritize.last.priority : tasks.count
+  end
 end

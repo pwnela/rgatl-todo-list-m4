@@ -14,6 +14,15 @@ describe TasksController do
     sign_in user
   end
 
+  it 'is assigned a default priority on creation' do
+    post :create, task: {description: "New Task", list_id: list.id}
+    post :create, task: {description: "Newer Task", list_id: list.id}
+    post :create, task: {description: "Newest Task", list_id: list.id}
+
+    task = Task.find_by_description("Newest Task")
+    list.tasks.prioritize.last.should == task
+  end
+
   it 'can be prioritized higher in its list' do
     post :change_priority, id: task6, priority: 1
     list.tasks.prioritize.should == [task6, task1, task2, task3, task4, task5]
