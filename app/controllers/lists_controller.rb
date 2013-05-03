@@ -24,6 +24,7 @@ class ListsController < ApplicationController
 
   def show
     @list = List.find(params[:id])
+    @tasks = @list.tasks.prioritize
   end
 
 
