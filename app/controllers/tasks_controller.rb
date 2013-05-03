@@ -39,4 +39,26 @@ class TasksController < ApplicationController
     redirect_to list_path(list)
   end
 
+  def change_priority
+    task = Task.find(params[:id])
+    list = task.list
+    old_priority = task.priority
+    new_priority = params[:priority].to_i   
+    task.update_attributes(priority: new_priority)
+
+    # If being decreased in priority, we have to also decrease the priority of the tasks that ranked between the old and new priority levels
+    if old_priority > new_priority
+      list.tasks.prioritize[new_priority -1..old_priority - 1].each do |demoted_task|
+        demoted_task.update_attributes(priority: demoted_task.priority + 1) unless demoted_task == task
+      end
+    # If being increased in priority, we have to also increase the priority of the tasks ranked between the old and new priority levels
+    elsif old_priority < new_priority
+      list.tasks.prioritize[old_priority-1..new_priority-1].each do |promoted_task|
+        promoted_task.update_attributes(priority: promoted_task.priority - 1) unless promoted_task == task
+      end
+    end
+    
+    redirect_to list_path(list)
+  end
+
 end
