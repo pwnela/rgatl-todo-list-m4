@@ -41,7 +41,7 @@ Milestone 3 Additions and Changes
 2. Adds optional deadline field to tasks and displays to user how many days are left to complete the task
 3. Adds ability to completely delete lists and tasks
 
-Milestone 3 Additions
+Milestone 4 Additions
 ---------------------
 
-1. Adds ability to rank tasks in priority for a given list
+1. Adds ability to rank and display tasks in priority for a given list
